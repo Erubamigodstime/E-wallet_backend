@@ -4,6 +4,11 @@ import dotenv from 'dotenv';
 import { initDB } from './config/db.js';
 import router from './routes/index.js';
 import rateLimiter from './middleware/rateLimiter.js';
+import job from './config/cron.js';
+
+// Start the cron job
+
+if(process.env.NODE_ENV === 'production')job.start();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
