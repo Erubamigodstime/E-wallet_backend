@@ -12,7 +12,9 @@ const rateLimiter = async (req, res, next) => {
         next();
     } catch (error) {
         console.error("Rate limiting error:", error);
-        res.status(500).json({ error: 'Internal server error' });
+        // Fail open: allow request to continue if rate limiting service is unavailable
+        console.warn("Rate limiting unavailable, allowing request to proceed");
+        next();
     }   
 };
 
