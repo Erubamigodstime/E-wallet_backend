@@ -94,7 +94,7 @@ const getTransactionSummary = async (req, res) => {
         }
         const balanceResult = await sql `
             SELECT                 
-                COALESCE(SUM(amount), 0) AS balance,
+                COALESCE(SUM(amount), 0) AS balance
             FROM transactions
             WHERE user_id = ${user_id};
         `;
